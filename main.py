@@ -4,11 +4,8 @@ from config import *
 from performer import *
 
 def on_message(channel, method_frame, header_frame, body):
-    try:
-        data = json.loads(body)
-    except:
-        data = body.decode("utf-8")
-    perform(data, LOG)
+    body = json.loads(body)
+    perform(body["NAME"], LOG)
 
     channel.basic_ack(delivery_tag=method_frame.delivery_tag)
 
